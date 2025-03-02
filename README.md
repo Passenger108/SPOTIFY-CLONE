@@ -7,8 +7,7 @@ This is a simple **Music Player Web App** that allows users to play, pause, and 
 - **Play/Pause Music**: Click the play button to start or stop the music.
 - **Playlist Support**: Users can select songs from a predefined playlist.
 - **Progress Bar**: Displays the current playback position.
-- **Responsive Design**: Works on both desktop and mobile devices.
-- **Touch & Click Support**: Ensures seamless interaction on touchscreens.
+
 
 ## Tech Stack
 - **HTML**: Structure of the web application.
@@ -18,11 +17,11 @@ This is a simple **Music Player Web App** that allows users to play, pause, and 
 ## Installation & Usage
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/music-player.git
+   git clone https://github.com/Passenger108/SPOTIFY-CLONE.git
    ```
 2. Navigate to the project directory:
    ```sh
-   cd music-player
+   cd SPOTIFY-CLONE
    ```
 3. Open `index.html` in a browser to run the app.
 
@@ -37,11 +36,10 @@ This is a simple **Music Player Web App** that allows users to play, pause, and 
 
 ## How It Works
 1. **JavaScript** is used to handle play/pause functionality.
-2. An **event listener** is added to buttons for user interaction.
+2. An **event listener** is added to elements for user interaction.
 3. **Audio API** is used to control song playback.
 
 ## Future Improvements
-- Add a **volume control** slider.
 - Implement a **song shuffle** feature.
 - Integrate a **backend** for dynamic song storage.
 
