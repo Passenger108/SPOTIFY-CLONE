@@ -1,109 +1,145 @@
 console.log("Welcome to Spotify");
 
-// Initialize the Variables
-let songIndex = 0;
-let audioElement = new Audio('songs/1.mp3');
-let masterPlay = document.getElementById('masterPlay');
-let myProgressBar = document.getElementById('myProgressBar');
-let gif = document.getElementById('gif');
-let masterSongName = document.getElementById('masterSongName');
-let songItems = Array.from(document.getElementsByClassName('songItem'));
+let sIndex = 1;
+let audioElement=new Audio("songs/2.mp3");
+let volume =0.4;
+
+let currentPlayCover = document.getElementById("currentPlayCover");
+let currentPlayName = document.getElementById("currentPlayName");
+let masterPlayButton = document.getElementById("masterPlayButton");
+let previousButton = document.getElementById("previousButton");
+let nextButton = document.getElementById("nextButton");
+let progressBar = document.getElementById("progressBar");
+let volumeUp = document.getElementById("volumeUp");
+let volumeDown = document.getElementById("volumeDown");
+let volumeRange = document.getElementById("volumeRange");
 
 let songs = [
-    {songName: "Warriyo - Mortals [NCS Release]", filePath: "songs/1.mp3", coverPath: "covers/1.jpg"},
-    {songName: "Cielo - Huma-Huma", filePath: "songs/2.mp3", coverPath: "covers/2.jpg"},
-    {songName: "DEAF KEV - Invincible [NCS Release]-320k", filePath: "songs/3.mp3", coverPath: "covers/3.jpg"},
-    {songName: "Different Heaven & EH!DE - My Heart [NCS Release]", filePath: "songs/4.mp3", coverPath: "covers/4.jpg"},
-    {songName: "Janji-Heroes-Tonight-feat-Johnning-NCS-Release", filePath: "songs/5.mp3", coverPath: "covers/5.jpg"},
-    {songName: "Rabba - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/6.jpg"},
-    {songName: "Sakhiyaan - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/7.jpg"},
-    {songName: "Bhula Dena - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/8.jpg"},
-    {songName: "Tumhari Kasam - Salam-e-Ishq", filePath: "songs/2.mp3", coverPath: "covers/9.jpg"},
-    {songName: "Na Jaana - Salam-e-Ishq", filePath: "songs/4.mp3", coverPath: "covers/10.jpg"},
+    {songName: "WAVY - Karan Aujla", filePath: "songs/1.mp3", coverPath: "covers/1.jpg"},
+    {songName: "ON TOP - Karan Aujla", filePath: "songs/2.mp3", coverPath: "covers/2.jpg"},
+    {songName: "WHO THEY? - Karan Aujla", filePath: "songs/3.mp3", coverPath: "covers/3.jpg"},
+    {songName: "GOIN OFF - Karan Aujla", filePath: "songs/4.mp3", coverPath: "covers/4.jpg"},
+    {songName: "WINNING SPEECH - Karan Aujla", filePath: "songs/5.mp3", coverPath: "covers/5.jpg"},
+    {songName: "CLASH - Diljit Dosanjh", filePath: "songs/6.mp3", coverPath: "covers/6.jpg"},
+    {songName: "JAIL 2 - Mankirt", filePath: "songs/7.mp3", coverPath: "covers/7.jpg"},
+    {songName: "GANGLAND - Mankirt", filePath: "songs/8.mp3", coverPath: "covers/8.jpg"},
+    {songName: "JAIL - Mankirt", filePath: "songs/9.mp3", coverPath: "covers/9.jpg"},
+    {songName: "PAAPI MUNDA - Mankirt", filePath: "songs/10.mp3", coverPath: "covers/10.jpg"},
 ]
 
-songItems.forEach((element, i)=>{ 
-    element.getElementsByTagName("img")[0].src = songs[i].coverPath; 
-    element.getElementsByClassName("songName")[0].innerText = songs[i].songName; 
-})
- 
 
-// Handle play/pause click
-masterPlay.addEventListener('click', ()=>{
-    if(audioElement.paused || audioElement.currentTime<=0){
-        audioElement.play();
-        masterPlay.classList.remove('fa-play-circle');
-        masterPlay.classList.add('fa-pause-circle');
-        gif.style.opacity = 1;
+let songBars = Array.from(document.getElementsByClassName("songBar"));
+
+songBars.forEach((element,i)=>{
+    element.querySelector("img").src= songs[i].coverPath;
+    element.querySelector("span").textContent = songs[i].songName;
+});
+
+function playSong(songIndex){
+    currentPlayCover.src = `covers/${songIndex+1}.jpg`;
+    currentPlayName.textContent = songs[songIndex].songName;
+    
+    audioElement.src = `songs/${songIndex + 1}.mp3`;
+    audioElement.load();
+
+    if(masterPlayButton.classList.contains("fa-play-circle")){
+        masterPlayButton.classList.remove("fa-play-circle");
+        masterPlayButton.classList.add("fa-pause-circle");
     }
-    else{
-        audioElement.pause();
-        masterPlay.classList.remove('fa-pause-circle');
-        masterPlay.classList.add('fa-play-circle');
-        gif.style.opacity = 0;
-    }
-})
-// Listen to Events
-audioElement.addEventListener('timeupdate', ()=>{ 
-    // Update Seekbar
-    progress = parseInt((audioElement.currentTime/audioElement.duration)* 100); 
-    myProgressBar.value = progress;
-})
+    progressBar.value = 0;
+    songBars[sIndex].querySelector("i").classList.remove("fa-pause-circle");
+    songBars[sIndex].querySelector("i").classList.add("fa-play-circle");
+    
+    sIndex = songIndex;
+    
+    songBars[sIndex].querySelector("i").classList.remove("fa-play-circle");
+    songBars[sIndex].querySelector("i").classList.add("fa-pause-circle");
 
-myProgressBar.addEventListener('change', ()=>{
-    audioElement.currentTime = myProgressBar.value * audioElement.duration/100;
-})
 
-const makeAllPlays = ()=>{
-    Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
-        element.classList.remove('fa-pause-circle');
-        element.classList.add('fa-play-circle');
-    })
+    audioElement.play();
 }
 
-Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
-    element.addEventListener('click', (e)=>{ 
-        makeAllPlays();
-        songIndex = parseInt(e.target.id);
-        e.target.classList.remove('fa-play-circle');
-        e.target.classList.add('fa-pause-circle');
-        audioElement.src = `songs/${songIndex+1}.mp3`;
-        masterSongName.innerText = songs[songIndex].songName;
-        audioElement.currentTime = 0;
-        audioElement.play();
-        gif.style.opacity = 1;
-        masterPlay.classList.remove('fa-play-circle');
-        masterPlay.classList.add('fa-pause-circle');
+function pauseSong(){
+    masterPlayButton.classList.remove("fa-pause-circle");
+    masterPlayButton.classList.add("fa-play-circle");
+    
+    songBars[sIndex].querySelector("i").classList.remove("fa-pause-circle");
+    songBars[sIndex].querySelector("i").classList.add("fa-play-circle");
+    
+    audioElement.pause();
+}
+
+function resume(){
+    masterPlayButton.classList.remove("fa-play-circle");
+    masterPlayButton.classList.add("fa-pause-circle");
+    
+    songBars[sIndex].querySelector("i").classList.remove("fa-play-circle");
+    songBars[sIndex].querySelector("i").classList.add("fa-pause-circle");
+    
+    audioElement.play();
+}
+
+
+
+
+// events
+
+masterPlayButton.addEventListener('click',()=>{
+    if(audioElement.paused){
+        resume();
+    }else{
+        pauseSong();
+    }
+})
+
+let playButtons = Array.from(document.getElementsByClassName("playButton"));
+playButtons.forEach((element)=>{
+    element.addEventListener('click',(event)=>{
+       if(element.classList.contains("fa-play-circle")){
+        if(sIndex == event.target.parentElement.id) 
+            resume();
+        else
+            playSong(parseInt(event.target.parentElement.id));
+       }else{
+        pauseSong();
+       }
     })
 })
 
-document.getElementById('next').addEventListener('click', ()=>{
-    if(songIndex>=9){
-        songIndex = 0
-    }
-    else{
-        songIndex += 1;
-    }
-    audioElement.src = `songs/${songIndex+1}.mp3`;
-    masterSongName.innerText = songs[songIndex].songName;
-    audioElement.currentTime = 0;
-    audioElement.play();
-    masterPlay.classList.remove('fa-play-circle');
-    masterPlay.classList.add('fa-pause-circle');
-
+audioElement.addEventListener('timeupdate',()=>{
+    let progress = (audioElement.currentTime/audioElement.duration)* 100; 
+    progressBar.value = progress;
 })
 
-document.getElementById('previous').addEventListener('click', ()=>{
-    if(songIndex<=0){
-        songIndex = 0
-    }
-    else{
-        songIndex -= 1;
-    }
-    audioElement.src = `songs/${songIndex+1}.mp3`;
-    masterSongName.innerText = songs[songIndex].songName;
-    audioElement.currentTime = 0;
-    audioElement.play();
-    masterPlay.classList.remove('fa-play-circle');
-    masterPlay.classList.add('fa-pause-circle');
+audioElement.addEventListener('ended',()=>{
+    audioElement.currentTime=0;
+    pauseSong();
 })
+
+nextButton.addEventListener('click',()=>{
+    let temp = sIndex +1;
+    playSong(temp>9?0:temp);
+})
+
+previousButton.addEventListener('click',()=>{
+    let temp = sIndex - 1;
+    playSong(temp<0?9:temp);
+})
+
+progressBar.addEventListener('change', ()=>{
+    audioElement.currentTime = progressBar.value * audioElement.duration/100;
+})
+
+volumeDown.addEventListener('click',()=>{
+    volume = audioElement.volume || 0.4;
+    audioElement.volume=0;
+})
+
+volumeUp.addEventListener('click',()=>{
+    audioElement.volume = volume;
+})
+
+volumeRange.addEventListener('change', ()=>{
+   volume = audioElement.volume = volumeRange.value/100;
+})
+

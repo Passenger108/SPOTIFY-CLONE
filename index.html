@@ -1,93 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Spotify - Your favourite music is here</title>
-        <link rel="stylesheet" href="style.css">
-        </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <body>
     <nav>
         <ul>
-            <li class="brand"><img src="logo.png" alt="Spotify"> Spotify</li>
-            <li>Home</li>
-            <li>About</li>
+            <li class="brand">
+                <img 
+                    src="logo.png" 
+                    alt="Spotify"
+                />
+                <span>
+                    Spotify
+                </span>
+            </li>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
         </ul>
     </nav>
 
-    <div class="container">
-        <div class="songList">
+    <div class="bottom">
+        
+        <div id="player">
+            <i class="fa fa-3x fa-step-backward" id="previousButton"></i>
+            <i class="fa fa-3x fa-play-circle" id="masterPlayButton"></i>
+            <i class="fa fa-3x fa-step-forward" id="nextButton"></i>
+        </div>
+
+        <div id="currentPlay">
+
+            <img src="covers/2.jpg" alt="" id="currentPlayCover">
+
+            <div id="currentPlayInfo">
+                <span id="currentPlayName">Cielo - Huma-Huma</span>
+                <input type="range" name="" id="progressBar" min="0" max="100" value="0">
+            </div>
+
+        </div>
+
+        <div id="volume">
+            <i class="fa fa-2x fa-volume-down " id="volumeDown"></i>
+            <input type="range" name="" id="volumeRange" min="0" max="100" value="40" >
+            <i class="fa  fa-2x fa-volume-up" id="volumeUp"></i>
+        </div>
+
+    </div>
+
+    <main>
+        <div class="content">
             <h1>Best of NCS - No Copyright Sounds</h1>
-            <div class="songItemContainer">
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+
+            <div id="songList">
+                <div class="songBar" id="0">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="1" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="1">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="2" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="2">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="3" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="3">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="4" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="4">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="5" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="5">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="6" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="6">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="7" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="7">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="8" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="8">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Let me Love You</span>
-                    <span class="songlistplay"><span class="timestamp">05:34 <i id="9" class="far songItemPlay fa-play-circle"></i> </span></span>
+                <div class="songBar" id="9">
+
+                    <img src="covers/1.jpg" alt="" class="songCover">
+                    <span class="songName"> Best Friend Garry</span>
+                    <i class="fa fa-3x fa-play-circle playButton"></i>
+
                 </div>
             </div>
         </div>
-        <div class="songBanner"></div>
-    </div>
+    </main>
 
-    <div class="bottom">
-        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
-        <div class="icons">
-            <!-- fontawesome icons -->
-            <i class="fas fa-3x fa-step-backward" id="previous"></i>
-            <i class="far fa-3x fa-play-circle" id="masterPlay"></i>
-            <i class="fas fa-3x fa-step-forward" id="next"></i> 
-        </div>
-        <div class="songInfo">
-            <img src="playing.gif" width="42px" alt="" id="gif"> <span id="masterSongName">Warriyo - Mortals [NCS Release]</span>
-        </div>
-    </div>
+
     <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
 </body>
 </html>
