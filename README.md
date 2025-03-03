@@ -3,6 +3,10 @@
 ## Overview
 This is a simple **Music Player Web App** that allows users to play, pause, and navigate through a playlist of songs. The project is built using **HTML, CSS, and JavaScript** and provides an interactive user interface.
 
+## 🚀 Live Demo  
+
+🔗 **[Click here to view the live project!](https://passenger108.github.io/SPOTIFY-CLONE/)**  
+
 ## Features
 - **Play/Pause Music**: Click the play button to start or stop the music.
 - **Playlist Support**: Users can select songs from a predefined playlist.
